@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core'
+import { DataService } from 'app/shared/data.service'
 import * as Rellax from 'rellax'
 
 @Component({
@@ -14,9 +15,11 @@ export class LandingPageComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     date : Date = new Date()
 
-     constructor() { }
+     constructor(private dataService: DataService) { }
 
     ngOnInit() {
+        debugger
+        this.dataService.getMessages(10);
         const body = document.getElementsByTagName('body')[0]
         body.classList.add('landing-page')
         const navbar = document.getElementsByTagName('nav')[0]
