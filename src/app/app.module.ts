@@ -8,22 +8,27 @@ import { AppComponent } from './app.component';
 import { LandingPageModule } from './landing-page/landing-page.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './shared/auth-interceptor.service';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavbarComponent,
-        FooterComponent
-    ],
+    declarations: [AppComponent, NavbarComponent, FooterComponent],
     imports: [
         BrowserAnimationsModule,
         NgbModule,
         FormsModule,
         RouterModule,
         AppRoutingModule,
-        LandingPageModule
+        LandingPageModule,
+        HttpClientModule
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
