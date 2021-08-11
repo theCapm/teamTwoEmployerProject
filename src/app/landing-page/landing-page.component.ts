@@ -18,8 +18,6 @@ export class LandingPageComponent implements OnInit, OnDestroy, AfterViewInit {
      constructor(private dataService: DataService) { }
 
     ngOnInit() {
-        debugger
-        this.dataService.getMessages(10);
         const body = document.getElementsByTagName('body')[0]
         body.classList.add('landing-page')
         const navbar = document.getElementsByTagName('nav')[0]
