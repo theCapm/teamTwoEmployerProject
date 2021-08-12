@@ -13,7 +13,12 @@ import { AuthInterceptorService } from './shared/auth-interceptor.service';
 import { LaunchChatButtonComponent } from './launch-chat-button/launch-chat-button.component';
 
 @NgModule({
-    declarations: [AppComponent, NavbarComponent, FooterComponent, LaunchChatButtonComponent],
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        FooterComponent,
+        LaunchChatButtonComponent
+    ],
     imports: [
         BrowserAnimationsModule,
         NgbModule,

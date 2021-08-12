@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
-const routes: Routes = [
-    { path: '', component: LandingPageComponent, pathMatch: 'full' }
-];
+const routes: Routes = [{ path: '', component: LandingPageComponent, pathMatch: 'full' }];
 
 @NgModule({
     imports: [
@@ -16,7 +14,6 @@ const routes: Routes = [
             useHash: true
         })
     ],
-    exports: [
-    ],
+    exports: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
