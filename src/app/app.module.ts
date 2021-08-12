@@ -10,9 +10,15 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './shared/auth-interceptor.service';
+import { LaunchChatButtonComponent } from './launch-chat-button/launch-chat-button.component';
 
 @NgModule({
-    declarations: [AppComponent, NavbarComponent, FooterComponent],
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        FooterComponent,
+        LaunchChatButtonComponent
+    ],
     imports: [
         BrowserAnimationsModule,
         NgbModule,
