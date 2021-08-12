@@ -11,7 +11,9 @@ export class LaunchChatButtonComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    openFormModal() {
+    openFormModal(content) {
+        this.modalService.open(content, { windowClass: 'dark-modal' });
+        
         /*Open the modal component*/
         // const modalRef = this.modalService.open(
         //     /*Component name here*/
