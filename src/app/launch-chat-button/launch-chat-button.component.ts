@@ -12,7 +12,7 @@ export class LaunchChatButtonComponent implements OnInit {
     ngOnInit(): void {}
 
     openFormModal(content) {
-        this.modalService.open(content, { windowClass: 'dark-modal' });
+        this.modalService.open(content);
         
         /*Open the modal component*/
         // const modalRef = this.modalService.open(
@@ -30,3 +30,4 @@ export class LaunchChatButtonComponent implements OnInit {
         console.log('openFormModal()!');
     }
 }
+// , { windowClass: 'dark-modal' }
