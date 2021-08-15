@@ -10,7 +10,7 @@ import { interval, Subscription } from 'rxjs';
 })
 export class DataService implements OnDestroy {
     private _messages: Message[];
-    private _session: Session;
+    public _session: Session;
     private _timerSub: Subscription;
 
     constructor(private http: HttpClient) {}
