@@ -17,7 +17,7 @@ import { LaunchChatButtonComponent } from './launch-chat-button/launch-chat-butt
         AppComponent,
         NavbarComponent,
         FooterComponent,
-        LaunchChatButtonComponent
+        LaunchChatButtonComponent,
     ],
     imports: [
         BrowserAnimationsModule,
