@@ -83,3 +83,8 @@ $color: #0cf;
 [data-tooltip]:not([data-tooltip-persistent]):before {
     pointer-events: none;
 }
+.modal-chat {
+    background-color: white;
+    border-radius: 2rem;
+    height: 800px;
+}
