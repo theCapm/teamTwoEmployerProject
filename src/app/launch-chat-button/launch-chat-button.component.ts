@@ -11,12 +11,17 @@ import { Message } from 'app/shared/message.model';
     styleUrls: ['./launch-chat-button.component.scss']
 })
 export class LaunchChatButtonComponent implements OnInit {
- currentSession = '';
-// loadedMessages = Message[];
+ updatedSession = '';
+loadedMessages = Message[] = [];
 
     constructor(private modalService: NgbModal, private dataService: DataService) {}
 
-    ngOnInit(): void {}
+    ngOnInit() {
+
+        this.dataService.getMessages().subscribe((_messages => {
+            this.loadedMessages = _messages;
+        }))
+    }
 
     openFormModal(content) {
         this.modalService.open(content);
@@ -41,12 +46,10 @@ export class LaunchChatButtonComponent implements OnInit {
         // is this a good place for the create session call?
         this.dataService.createSession(chatForm.name, chatForm.message);
       
-        this.currentSession = localStorage.getItem('session_id');
-        console.log(this.currentSession);
+        this.updatedSession = localStorage.getItem('session_id');
+        console.log(this.updatedSession);
         // how do I get the session id here? @viewChild?
        
-    //     this.dataService.getMessages(this.currentSession).subscribe((_messages => {
-    //         this.loadedMessages = _messages;
-    //     }))
+        
     }
 }
