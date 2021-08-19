@@ -34,13 +34,6 @@ export class ChatModalComponent implements OnInit {
 
 
 
-//   this.dataService.getMessages().subscribe((_messages => {
-//         this.loadedMessages = _messages;
-//     }))
-
-
-//     this.updatedSession = localStorage.getItem('session_id');
-//     console.log(this.updatedSession);
       
 }
 
