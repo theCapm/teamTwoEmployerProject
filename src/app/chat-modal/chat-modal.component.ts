@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { DataService } from 'app/shared/data.service';
 
 
@@ -9,18 +10,28 @@ import { DataService } from 'app/shared/data.service';
   styleUrls: ['./chat-modal.component.scss']
 })
 export class ChatModalComponent implements OnInit {
-  updatedSession = '';
-  // loadedMessages = Message[] = [];
+  @Input() _messages;
+  prospectsName = '';
+  sessionStarted = false;
+  nameEntered = false;
 
-  constructor(public activeModal: NgbActiveModal, private dataService: DataService) { }
+  constructor(public activeModal: NgbActiveModal, private dataService: DataService) {  }
 
   ngOnInit(): void {
   }
 
 
   onSendMessage(chatForm) {
-    // is this a good place for the create session call?
+    if (!this.sessionStarted) {
     this.dataService.createSession(chatForm.name, chatForm.message);
+    this.prospectsName = chatForm.name;
+    this.dataService.sendAndReceive();
+    this.sessionStarted = true;
+    } else {
+      this.dataService.sendAndReceive();
+    }
+
+
 
 
 //   this.dataService.getMessages().subscribe((_messages => {
@@ -30,8 +41,8 @@ export class ChatModalComponent implements OnInit {
 
 //     this.updatedSession = localStorage.getItem('session_id');
 //     console.log(this.updatedSession);
-//     // how do I get the session id here? @viewChild?
-   
-    
+      
 }
+
+
 }

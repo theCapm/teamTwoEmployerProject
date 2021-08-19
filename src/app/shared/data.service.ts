@@ -1,18 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, Output } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Session } from './session.model';
 import { Message } from './message.model';
 import { interval, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DataService implements OnDestroy {
     id: any;
-    private _messages: Message[];
-    public _session: Session;
+    @Output() _messages: Message[];
+    private _session: Session;
     private _timerSub: Subscription;
 
     constructor(private http: HttpClient) {}
@@ -88,6 +87,11 @@ export class DataService implements OnDestroy {
         console.log(`key: ${key}\r\nvalue:${value}`);
 
         localStorage.setItem(key, value);
+    }
+
+    sendAndReceive() {
+        this.getMessages;
+
     }
 
     ngOnDestroy() {
