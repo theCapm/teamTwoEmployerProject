@@ -1,0 +1,30 @@
+.modal-chat {
+    background-color: white;
+    border-radius: 2rem;
+    height: 800px;
+}
+
+.modal-header {
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    border-color: darkblue;
+    background-color: white;
+}
+
+.modal-body {
+    height: 500px;
+    border-color: darkblue;
+    background-color: white;
+}
+
+.modal-footer {
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-color: darkblue;
+    background-color: white;
+}
+
+.check {
+border-color: darkmagenta;
+border-width: emphasis;
+}

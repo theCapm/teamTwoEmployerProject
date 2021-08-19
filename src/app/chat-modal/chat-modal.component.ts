@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from 'app/shared/data.service';
 
 
@@ -11,7 +12,7 @@ export class ChatModalComponent implements OnInit {
   updatedSession = '';
   // loadedMessages = Message[] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(public activeModal: NgbActiveModal, private dataService: DataService) { }
 
   ngOnInit(): void {
   }
