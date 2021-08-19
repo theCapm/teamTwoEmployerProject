@@ -1,39 +1,8 @@
-<ng-template #content let-modal>
-      <div class="modal-header">
-      <h4 class="modal-title">Slack Me</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
 
-      <p>Drop me a line&hellip;</p>
-    </div>
-    <div class="modal-footer">
-            <form class="row row-cols-lg-auto g-3 align-items-center" #chatForm="ngForm" (ngSubmit)="onSendMessage(chatForm.value)">
-                <div class="col-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Name" id="name" required ngModel name="name" />
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Message" id="message" required ngModel name="message" row="2"></textarea>
-                    </div>
-                </div>
-    
-                <div class="col-12">
-                    <button class="btn btn-primary" type="submit" [disabled]="!chatForm.valid">
-                        Send
-                    </button> 
-                    <button type="button"  class="btn btn-light pull-right" (click)="modal.close('Close click')">Close</button>
-                </div>
-            </form>
-      
-      </div>  
-  </ng-template>
 
 <div class="modal-launch-button-container">
     <div data-tooltip="click here to send me a message!">
-        <a class="modal-launch-button" (click)="openFormModal(content)">
+        <a class="modal-launch-button" (click)="openFormModal()">
             <img src="../../assets/icons/chat.png" />
         </a>
     </div>

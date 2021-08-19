@@ -4,7 +4,7 @@ import { environment } from 'environments/environment';
 import { Session } from './session.model';
 import { Message } from './message.model';
 import { interval, Subscription } from 'rxjs';
-// import { tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -48,11 +48,7 @@ export class DataService implements OnDestroy {
             .post(environment.apiUrl + '/new_session', {
                 name: name,
                 message: message
-            }).pipe(tap(response => {
-                this.id = response.payload[0].session_id
-                localStorage.setItem('session_id', response.payload[0].session_id);
-              }
-              ))
+            })
               .subscribe(
                 (response) => {
                     if (response['success']) {
@@ -103,9 +99,9 @@ export class DataService implements OnDestroy {
 
 
 
-.subscribe(response => {
-    this.id = response.payload[0].session_id
-    localStorage.setItem('session_id', response.payload[0].session_id);
-    console.log(response);
-}
-)
+// .subscribe(response => {
+//     this.id = response.payload[0].session_id
+//     localStorage.setItem('session_id', response.payload[0].session_id);
+//     console.log(response);
+// }
+// )

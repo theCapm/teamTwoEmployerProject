@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subscription } from 'rxjs/Subscription';
 
-import { DataService } from 'app/shared/data.service';
-import { Message } from 'app/shared/message.model';
+import { ChatModalComponent } from 'app/chat-modal/chat-modal.component';
 
 @Component({
     selector: 'app-launch-chat-button',
@@ -11,20 +9,16 @@ import { Message } from 'app/shared/message.model';
     styleUrls: ['./launch-chat-button.component.scss']
 })
 export class LaunchChatButtonComponent implements OnInit {
- updatedSession = '';
-loadedMessages = Message[] = [];
 
-    constructor(private modalService: NgbModal, private dataService: DataService) {}
+
+    constructor(private modalService: NgbModal) {}
 
     ngOnInit() {
-
-        this.dataService.getMessages().subscribe((_messages => {
-            this.loadedMessages = _messages;
-        }))
+       
     }
 
-    openFormModal(content) {
-        this.modalService.open(content);
+    openFormModal() {
+        this.modalService.open(ChatModalComponent);
         
         /*Open the modal component*/
         // const modalRef = this.modalService.open(
@@ -42,14 +36,5 @@ loadedMessages = Message[] = [];
         console.log('openFormModal()!');
     }
 
-    onSendMessage(chatForm) {
-        // is this a good place for the create session call?
-        this.dataService.createSession(chatForm.name, chatForm.message);
-      
-        this.updatedSession = localStorage.getItem('session_id');
-        console.log(this.updatedSession);
-        // how do I get the session id here? @viewChild?
-       
-        
-    }
+  
 }
