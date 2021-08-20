@@ -4,6 +4,7 @@ import { environment } from 'environments/environment';
 import { Session } from './session.model';
 import { Message } from './message.model';
 import { interval, Subscription } from 'rxjs';
+import { EventEmitter } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,9 @@ export class DataService implements OnDestroy {
     id: any;
     @Output() _messages: Message[];
     private _session: Session;
+    private _sessionId: number;
     private _timerSub: Subscription;
+    messagesRecieved = new EventEmitter<Message[]>();
 
     constructor(private http: HttpClient) {}
 
@@ -20,17 +23,28 @@ export class DataService implements OnDestroy {
         return this._messages;
     }
 
-    getMessages(session: Session) {
+    getMessages() {
         //loads the messages array with the
         //API response for a the current session
+
+        //Figure out why the session ID is null
+        console.log(`this._session = ${this._session}`);
+        console.log(`this._session.session_id = ${this._session.session_id}`);
+        console.log(`this._sessionId = ${this._sessionId}`);
+        debugger
+
         this.http
             .get(environment.apiUrl + '/retrieve_messages', {
-                params: { session_id: `${session.session_id}` }
+                params: { session_id: `${this._session.session_id}` }
             })
             .subscribe(
                 (response) => {
                     if (response['success']) {
-                        this._messages = response['payload'] as Message[];
+                        const m = response['payload'] as Message[];
+                        if (this._messages != m){
+                            this._messages = m;
+                            this.messagesRecieved.next(this._messages);
+                        }                       
                     } else {
                         console.log(response);
                     }
@@ -50,8 +64,7 @@ export class DataService implements OnDestroy {
             })
               .subscribe(
                 (response) => {
-                    if (response['success']) {
-                       
+                    if (response['success']) {                       
                         this.handleCreateSession(response['payload'] as Session);
                     }
                 },
@@ -68,7 +81,7 @@ export class DataService implements OnDestroy {
 
     private startMessageTimer() {
         this._timerSub = interval(5000).subscribe(() => {
-            this.getMessages;
+            this.getMessages();
         });
     }
 
@@ -77,7 +90,9 @@ export class DataService implements OnDestroy {
     }
 
     private handleCreateSession(response: Session) {
+        debugger
         this._session = response;
+        this._sessionId = response['session_id'];
         this.writeToLocalStorage('session', JSON.stringify(this._session));
         this.startMessageTimer();
     }
@@ -91,12 +106,13 @@ export class DataService implements OnDestroy {
 
     sendAndReceive() {
         this.getMessages;
-
     }
 
     ngOnDestroy() {
         this.stopMessageTimer;
     }
+
+    
 }
 
 // temporarily removed from onCreateSession() method
