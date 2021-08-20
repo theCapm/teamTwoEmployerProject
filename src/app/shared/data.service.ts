@@ -13,7 +13,6 @@ export class DataService implements OnDestroy {
     id: any;
     @Output() _messages: Message[];
     private _session: Session;
-    private _sessionId: number;
     private _timerSub: Subscription;
     messagesRecieved = new EventEmitter<Message[]>();
 
@@ -26,13 +25,7 @@ export class DataService implements OnDestroy {
     getMessages() {
         //loads the messages array with the
         //API response for a the current session
-
-        //Figure out why the session ID is null
-        console.log(`this._session = ${this._session}`);
-        console.log(`this._session.session_id = ${this._session.session_id}`);
-        console.log(`this._sessionId = ${this._sessionId}`);
-        debugger
-
+        console.log('getMessages()')
         this.http
             .get(environment.apiUrl + '/retrieve_messages', {
                 params: { session_id: `${this._session.session_id}` }
@@ -73,10 +66,6 @@ export class DataService implements OnDestroy {
                     console.log(error);
                 }
             );
-
-            
-           
-
     }
 
     private startMessageTimer() {
@@ -90,9 +79,7 @@ export class DataService implements OnDestroy {
     }
 
     private handleCreateSession(response: Session) {
-        debugger
-        this._session = response;
-        this._sessionId = response['session_id'];
+        this._session = response[0];
         this.writeToLocalStorage('session', JSON.stringify(this._session));
         this.startMessageTimer();
     }
