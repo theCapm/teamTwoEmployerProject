@@ -21,7 +21,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
   constructor(public activeModal: NgbActiveModal, private dataService: DataService) {  }
 
   ngOnInit(): void {
-    this._messageSub = this.dataService.messagesRecieved.subscribe((messages: Message[]) => {
+    this._messageSub = this.dataService.messagesChanged.subscribe((messages: Message[]) => {
       this._messages = messages;
     })
   }
