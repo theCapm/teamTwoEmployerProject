@@ -14,7 +14,8 @@
       </ul>
   </div>
   <div class="modal-footer">
-          <form class="row row-cols-lg-auto g-3 align-items-center" #chatForm="ngForm" (ngSubmit)="onSendMessage(chatForm.value)">
+          <!-- <form class="row row-cols-lg-auto g-3 align-items-center" #chatForm="ngForm" (ngSubmit)="onSendMessage(chatForm.value)"> -->
+          <form class="row row-cols-lg-auto g-3 align-items-center" #chatForm="ngForm" (ngSubmit)="sendMessage(chatForm.value)">
               <div class="col-12">
                   <div class="form-group">
                       <input *ngIf="!this.sessionStarted" type="text" class="form-control" placeholder="Name" id="name" required ngModel name="name" />
