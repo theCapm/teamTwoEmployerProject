@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { DataService } from 'app/shared/data.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./chat-modal.component.scss']
 })
 export class ChatModalComponent implements OnInit, OnDestroy {
-    private _messages: Message[];
+    _messages: Message[];
     prospectsName = '';
     sessionStarted = false;
     nameEntered = false;
@@ -28,20 +28,12 @@ export class ChatModalComponent implements OnInit, OnDestroy {
         );
     }
 
-    //   onSendMessage(chatForm) {
-    //     if (!this.sessionStarted) {
-    //     this.dataService.createSession(chatForm.name, chatForm.message);
-    //     this.prospectsName = chatForm.name;
-    //     this.dataService.sendAndReceive();
-    //     this.sessionStarted = true;
-    //     } else {
-    //       this.dataService.sendAndReceive();
-    //     }
-    // }
-
     sendMessage(chatForm: any) {
+        this.sessionStarted = true;
         this.dataService.sendMessage(chatForm.name, chatForm.message);
+        this.prospectsName = chatForm.name;    
     }
+
     ngOnDestroy(): void {
         this._messageSub.unsubscribe();
     }

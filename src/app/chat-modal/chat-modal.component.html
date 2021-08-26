@@ -4,14 +4,11 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body overflow-auto">
 
     <p *ngIf="!this.sessionStarted">Drop me a line&hellip;</p>
-    <ul class="list-group" *ngIf="this.sessionStarted">
-        <li class="list-group-item" *ngFor="let message of _messages">
-          <p>{{ message.text }}</p>
-        </li>
-      </ul>
+    <app-message *ngFor="let _message of _messages" [name]="_message[0].user" [text]="_message[0].text" [timestamp]="_message[0].timestamp"></app-message>
+
   </div>
   <div class="modal-footer">
           <!-- <form class="row row-cols-lg-auto g-3 align-items-center" #chatForm="ngForm" (ngSubmit)="onSendMessage(chatForm.value)"> -->
@@ -22,8 +19,8 @@
                       <p *ngIf="this.sessionStarted">{{ prospectsName }}</p>
                   </div>
                   <div class="form-group">
-                      <textarea class="form-control" placeholder="Message" id="message" required ngModel name="message" row="2"></textarea>
-                  </div>
+                    <input class="form-control" placeholder="Message" id="message" required ngModel name="message"/>
+                </div>
               </div>
   
               <div class="col-12">

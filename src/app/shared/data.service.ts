@@ -25,7 +25,6 @@ export class DataService implements OnDestroy {
 
     //public method to be used by the component to send a message
     public sendMessage(name: string, message: string) {
-        debugger
         console.log(`DataService.sendMessage(${name}, ${message})`);
 
         //if we don't have a session we need to get one
