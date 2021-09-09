@@ -51,7 +51,7 @@ export class DataService implements OnDestroy {
             .subscribe(
                 (response) => {
                     if (response['success']) {
-                        const messages = response['payload'] as Message[];
+                        const messages = response['payload'];
                         console.log('response recieved...');
                         if (this._messages != messages) {
                             this._messages = messages;
@@ -129,6 +129,7 @@ export class DataService implements OnDestroy {
             console.log('restoring session...');
             this._session = JSON.parse(localStorage.getItem('session'));
             if (!this._timerSub) {
+                this.getMessages();
                 this.startMessageTimer();
             }
             return true;
@@ -164,8 +165,9 @@ export class DataService implements OnDestroy {
         localStorage.setItem(key, value);
     }
 
-    sendAndReceive() {
-        this.getMessages;
+   
+    checkSession() {
+        this.restoreStoredSession();
     }
 
     ngOnDestroy() {

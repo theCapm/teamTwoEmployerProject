@@ -8,8 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MessageComponent implements OnInit {
   @Input() name: string;
   @Input() text: string;
+  @Input() user: string;
   @Input() timestamp: Date;
-
 
   constructor() { }
 
